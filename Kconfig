@@ -66,4 +66,4 @@ config KAS_INCLUDE_SDK_YML_FILE
 config KAS_INCLUDE_DEBUG_TWEAKS_YML_FILE
   string "KAS DEBUG TWEAKS file"
   depends on INCLUDE_DEBUG_TWEAKS
-  default "include/debug-tweaks.yml"
+  default "include/common-debug-tweaks.yml"
