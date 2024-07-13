@@ -1,0 +1,6 @@
+header:
+  version: 14
+
+local_conf_header:
+  standard: |
+    EXTRA_IMAGE_FEATURES += "debug-tweaks"
