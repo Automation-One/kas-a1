@@ -1,0 +1,59 @@
+choice
+  prompt "Machine selection"
+  help
+    OE MACHINE to use during the build.
+
+config MACHINE_IMX6ULL_A1_GW
+  bool "A1 i.MX6ULL A1 GW"
+  help
+    OE MACHINE variable is set to a1-imx6ull-gw .
+
+endchoice
+
+choice
+  prompt "OE release selection"
+  help
+    OE release to use during the build.
+
+config RELEASE_SCARTHGAP
+  bool "OE Scarthgap 5.0 LTS"
+  help
+    OE Scarthgap 5.0 LTS release .
+endchoice
+
+
+config INCLUDE_SDK_YML
+  bool "Populate SDK for image recipe"
+  help
+    Populate SDK for selected image recipe.
+
+config KAS_TARGET_IMAGE
+  string "KAS Target image"
+  default "core-image-base"
+  help
+    The build target that will be built. This is often an image name, e.g.
+    core-image-base.
+
+comment "Inferred and expert settings"
+
+config KAS_BUILD_SYSTEM
+  string "KAS build system"
+  default "openembedded"
+  help
+    The build_system that will used. The static kconfig string variable
+    KAS_BUILD_SYSTEM defines this value which must be openembedded, oe
+    or isar is set.
+
+config KAS_INCLUDE_RELEASE_YML_FILE
+  string "KAS OE release YML file"
+  default "include/common-scarthgap.yml" if RELEASE_SCARTHGAP
+
+config KAS_INCLUDE_BSP_YML_FILE
+  string "KAS OE MACHINE and BSP layer YML file"
+  depends on MACHINE_IMX6ULL_A1_GW
+  default "a1-imx6ull-gw.yml" if MACHINE_IMX6ULL_A1_GW
+
+config KAS_INCLUDE_SDK_YML_FILE
+  string "KAS SDK YML file"
+  depends on INCLUDE_SDK_YML
+  default "include/common-sdk.yml"

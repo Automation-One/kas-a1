@@ -1,0 +1,21 @@
+header:
+  version: 14
+  includes:
+    - include/common-settings.yml
+
+distro: nodistro
+
+target:
+  - core-image-base
+
+repos:
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    layers:
+      meta:
+
+  meta-mainline-common:
+    url: https://source.denx.de/denx/meta-mainline-common.git
+
+  meta-a1-platform:
+    url: https://github.com/Automation-One/meta-a1-platform.git

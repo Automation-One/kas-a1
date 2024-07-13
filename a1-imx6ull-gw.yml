@@ -1,0 +1,6 @@
+header:
+  version: 14
+  includes:
+    - include/common-meta-a1-platform.yml
+
+machine: a1-imx6ull-gw
