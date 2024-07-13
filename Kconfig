@@ -21,6 +21,10 @@ config RELEASE_SCARTHGAP
     OE Scarthgap 5.0 LTS release .
 endchoice
 
+config INCLUDE_AUTOMATION_ONE_EXTRAS
+  bool "Include the automation-one extras layer"
+  help
+    Include automation-one extras layer.
 
 config INCLUDE_SDK_YML
   bool "Populate SDK for image recipe"
@@ -34,7 +38,8 @@ config INCLUDE_DEBUG_TWEAKS
 
 config KAS_TARGET_IMAGE
   string "KAS Target image"
-  default "core-image-base"
+  default "a1-image" if INCLUDE_AUTOMATION_ONE_EXTRAS
+  default "core-image-base" if !INCLUDE_AUTOMATION_ONE_EXTRAS
   help
     The build target that will be built. This is often an image name, e.g.
     core-image-base.
@@ -67,3 +72,9 @@ config KAS_INCLUDE_DEBUG_TWEAKS_YML_FILE
   string "KAS DEBUG TWEAKS file"
   depends on INCLUDE_DEBUG_TWEAKS
   default "include/common-debug-tweaks.yml"
+
+config KAS_INCLUDE_A1EXTRAS_YML_FILE
+  string "KAS AutomationOne extras YML file"
+  depends on INCLUDE_AUTOMATION_ONE_EXTRAS
+  default "include/common-a1-extras.yml"
+
