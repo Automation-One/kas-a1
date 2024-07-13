@@ -44,6 +44,24 @@ config KAS_TARGET_IMAGE
     The build target that will be built. This is often an image name, e.g.
     core-image-base.
 
+choice
+  prompt "OE distro selection"
+  default USE_A1LINUX_DISTRO if INCLUDE_AUTOMATION_ONE_EXTRAS
+
+config USE_NODISTRO
+  bool "Use OE nodistro distribution"
+  help
+    Use the OE nodistro distribution
+
+config USE_A1LINUX_DISTRO
+  bool "Use the A1Linux distribution"
+  depends on INCLUDE_AUTOMATION_ONE_EXTRAS
+  help
+    Use the A1Linux Distribution which is specifically tuned for the
+    AutomationOne Gateways.
+
+endchoice
+
 comment "Inferred and expert settings"
 
 config KAS_BUILD_SYSTEM
@@ -78,3 +96,7 @@ config KAS_INCLUDE_A1EXTRAS_YML_FILE
   depends on INCLUDE_AUTOMATION_ONE_EXTRAS
   default "include/common-a1-extras.yml"
 
+config KAS_INCLUDE_A1LINUX_DISTRIBUTION_YAML_FILE
+  string "KAS A1Linux distribution YML file"
+  depends on USE_A1LINUX_DISTRO
+  default "include/common-a1linux.yml"
