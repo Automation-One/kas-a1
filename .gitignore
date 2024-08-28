@@ -2,3 +2,4 @@ meta-*
 build
 poky
 .config*
+.vscode*
