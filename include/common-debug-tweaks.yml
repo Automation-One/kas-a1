@@ -3,4 +3,4 @@ header:
 
 local_conf_header:
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES += " debug-tweaks "
+    EXTRA_IMAGE_FEATURES:append = " debug-tweaks "
