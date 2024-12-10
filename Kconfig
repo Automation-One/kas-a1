@@ -54,6 +54,9 @@ config INCLUDE_SDK_YML
     Populate SDK for selected image recipe.
 endmenu
 
+
+
+
 menu "Optional Packages and Features"
 
 config INCLUDE_AUTOMATION_ONE_EXTRAS
@@ -65,10 +68,19 @@ config INCLUDE_AUTOMATION_ONE_EXTRAS
     standard OE layers.
 
 config INCLUDE_RAUC
+
   bool "Include RAUC update handler layer"
-  depends on INCLUDE_AUTOMATION_ONE_EXTRAS
+  default n
   help
-    Include the rauc update handler layer
+    Include the rauc update handler layer. It is recommended to also
+    use include Python, since the rauc hawkbit client requires it.
+
+config INCLUDE_PYTHON
+  bool "Include Python"
+  default y if INCLUDE_RAUC
+  default n if !INCLUDE_RAUC
+  help
+    Include Python in the image recipe
 
 endmenu
 
@@ -123,5 +135,10 @@ config KAS_INCLUDE_RAUC_YML_FILE
   string "KAS RAUC YML file"
   depends on INCLUDE_RAUC
   default "include/common-rauc.yml"
+
+config KAS_INCLUDE_PYTHON_YML_FILE
+  string "KAS Python YML file"
+  depends on INCLUDE_PYTHON
+  default "include/common-python.yml"
 
 endmenu

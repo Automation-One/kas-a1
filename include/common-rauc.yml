@@ -9,7 +9,6 @@ repos:
   meta-openembedded:
     url: https://git.openembedded.org/meta-openembedded
     layers:
-      meta-python:
       meta-filesystems:
 
   meta-rauc:
