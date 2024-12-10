@@ -1,3 +1,5 @@
+
+menu "General settings"
 choice
   prompt "Machine selection"
   help
@@ -13,41 +15,13 @@ endchoice
 choice
   prompt "OE release selection"
   help
-    OE release to use during the build.
+    OE release to use during the build .
 
 config RELEASE_SCARTHGAP
   bool "OE Scarthgap 5.0 LTS"
   help
     OE Scarthgap 5.0 LTS release .
 endchoice
-
-config INCLUDE_AUTOMATION_ONE_EXTRAS
-  bool "Include the automation-one extras layer"
-  help
-    Include automation-one extras layer.
-
-config INCLUDE_SDK_YML
-  bool "Populate SDK for image recipe"
-  help
-    Populate SDK for selected image recipe.
-
-config INCLUDE_DEBUG_TWEAKS
-  bool "Set Debug Tweaks for the image recipe"
-  help
-    Set Debug Tweaks for the image recipe
-
-config INCLUDE_RAUC
-  bool "Include RAUC update handler layer"
-  help
-    Include the rauc update handler layer
-
-config KAS_TARGET_IMAGE
-  string "KAS Target image"
-  default "a1-image" if INCLUDE_AUTOMATION_ONE_EXTRAS
-  default "core-image-base" if !INCLUDE_AUTOMATION_ONE_EXTRAS
-  help
-    The build target that will be built. This is often an image name, e.g.
-    core-image-base.
 
 choice
   prompt "OE distro selection"
@@ -64,11 +38,50 @@ config USE_A1LINUX_DISTRO
   help
     Use the A1Linux Distribution which is specifically tuned for the
     AutomationOne Gateways.
-
 endchoice
 
-comment "Inferred and expert settings"
+config KAS_TARGET_IMAGE
+  string "KAS Target image"
+  default "a1-image" if INCLUDE_AUTOMATION_ONE_EXTRAS
+  default "core-image-base" if !INCLUDE_AUTOMATION_ONE_EXTRAS
+  help
+    The build target that will be built. This is often an image name, e.g.
+    core-image-base.
 
+config INCLUDE_SDK_YML
+  bool "Populate SDK for image recipe"
+  help
+    Populate SDK for selected image recipe.
+endmenu
+
+menu "Optional Packages and Features"
+
+config INCLUDE_AUTOMATION_ONE_EXTRAS
+  bool "Include the automation-one extras layer"
+  default y
+  help
+    Include automation-one extras layer. This layer contains additional
+    recipes and configurations for the AutomationOne Gateways beyond the
+    standard OE layers.
+
+config INCLUDE_RAUC
+  bool "Include RAUC update handler layer"
+  depends on INCLUDE_AUTOMATION_ONE_EXTRAS
+  help
+    Include the rauc update handler layer
+
+endmenu
+
+menu "Debug Settings"
+
+config INCLUDE_DEBUG_TWEAKS
+  bool "Set Debug Tweaks for the image recipe"
+  help
+    Set Debug Tweaks for the image recipe
+
+endmenu
+
+menu "Inferred and expert settings"
 config KAS_BUILD_SYSTEM
   string "KAS build system"
   default "openembedded"
@@ -110,3 +123,5 @@ config KAS_INCLUDE_RAUC_YML_FILE
   string "KAS RAUC YML file"
   depends on INCLUDE_RAUC
   default "include/common-rauc.yml"
+
+endmenu
