@@ -1,0 +1,16 @@
+header:
+  version: 14
+
+local_conf_header:
+  rauc: |
+    DISTRO_FEATURES:append = " rauc "
+
+repos:
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    layers:
+      meta-python:
+      meta-filesystems:
+
+  meta-rauc:
+    url: https://github.com/rauc/meta-rauc.git

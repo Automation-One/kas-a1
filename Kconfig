@@ -36,6 +36,11 @@ config INCLUDE_DEBUG_TWEAKS
   help
     Set Debug Tweaks for the image recipe
 
+config INCLUDE_RAUC
+  bool "Include RAUC update handler layer"
+  help
+    Include the rauc update handler layer
+
 config KAS_TARGET_IMAGE
   string "KAS Target image"
   default "a1-image" if INCLUDE_AUTOMATION_ONE_EXTRAS
@@ -100,3 +105,8 @@ config KAS_INCLUDE_A1LINUX_DISTRIBUTION_YAML_FILE
   string "KAS A1Linux distribution YML file"
   depends on USE_A1LINUX_DISTRO
   default "include/common-a1linux.yml"
+
+config KAS_INCLUDE_RAUC_YML_FILE
+  string "KAS RAUC YML file"
+  depends on INCLUDE_RAUC
+  default "include/common-rauc.yml"
