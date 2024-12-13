@@ -100,6 +100,32 @@ config ROOT_PASSWORD_HASH
     There is no need to escape any hashes.
 endmenu
 
+menu "Network Configuration"
+config USE_END0_DHCP
+  bool "Enable DHCP Server on the lower Ethernet port"
+  help
+    Per default the lower Ethernet port is configured as a DHCP client.
+    This option activates the dhcp-server network configuration for the
+    lower Ethernet port instead.
+
+config END0_DHCP
+  string
+  default "false" if !USE_END0_DHCP
+  default "true" if USE_END0_DHCP
+
+config USE_END1_DHCP
+  bool "Enable DHCP Server on the upper Ethernet port"
+  help
+    Per default the upper Ethernet port is configured as a DHCP client.
+    This option activates the dhcp-server network configuration for the
+    upper Ethernet port instead.
+
+config END1_DHCP
+  string
+  default "false" if !USE_END1_DHCP
+  default "true" if USE_END1_DHCP
+endmenu
+
 endmenu
 
 menu "Optional Packages and Features"
