@@ -120,6 +120,24 @@ config INCLUDE_RAUC
     Include the rauc update handler layer. It is recommended to also
     use include Python, since the rauc hawkbit client requires it.
 
+config RAUC_KEY_FILE
+  string "RAUC key file"
+  depends on INCLUDE_RAUC
+  help
+    The (absolute) path to the RAUC key file.
+
+config RAUC_CERT_FILE
+  string "RAUC certificate file"
+  depends on INCLUDE_RAUC
+  help
+    The (absolute) path to the RAUC certificate file.
+
+config RAUC_KEYRING_FILE
+  string "RAUC keyring file"
+  depends on INCLUDE_RAUC
+  help
+    The (absolute) path to the RAUC keyring file.
+
 config INCLUDE_PYTHON
   bool "Include Python"
   default y if INCLUDE_RAUC
