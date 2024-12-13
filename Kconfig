@@ -98,6 +98,13 @@ config ROOT_PASSWORD_HASH
   help
     The hash of the root password to set for the image recipe.
     There is no need to escape any hashes.
+
+config ROOT_AUTHORIZED_KEYS
+  string "Root authorized keys"
+  help
+    The (absolute) path to the authorized_keys file to be used for
+    the root user.
+
 endmenu
 
 menu "Network Configuration"
