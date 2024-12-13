@@ -54,8 +54,53 @@ config INCLUDE_SDK_YML
     Populate SDK for selected image recipe.
 endmenu
 
+menu "Customization"
 
+menu "Password Settings"
+choice
+  prompt "Root password settings"
+  help
+    Set how the root password should be set for the image recipe.
+  default USE_NO_ROOT_PASSWORD
 
+config USE_NO_ROOT_PASSWORD
+  bool "Don't set any root password"
+  help
+    Don't set a root password for the image recipe. This might make
+    it impossible to access the gateway.
+
+config INCLUDE_DEBUG_TWEAKS
+  bool "Set Debug Tweaks for the image recipe (DEBUG ONLY!)"
+  help
+    Set Debug Tweaks for the image recipe. This essentially removes any
+    password protection.
+
+config USE_ROOT_PASSWORD
+  bool "Use clear text to set root password"
+  help
+    Set the root password in clear text for the image recipe.
+
+config USE_ROOT_PASSWORD_HASH
+  bool "Use hash to set root password"
+  help
+    Set the root password as a hash for the image recipe.
+endchoice
+
+config ROOT_PASSWORD
+  string "Root password"
+  depends on USE_ROOT_PASSWORD
+  help
+    The root password to set for the image recipe.
+
+config ROOT_PASSWORD_HASH
+  string "Root password hash"
+  depends on USE_ROOT_PASSWORD_HASH
+  help
+    The hash of the root password to set for the image recipe.
+    There is no need to escape any hashes.
+endmenu
+
+endmenu
 
 menu "Optional Packages and Features"
 
@@ -81,15 +126,6 @@ config INCLUDE_PYTHON
   default n if !INCLUDE_RAUC
   help
     Include Python in the image recipe
-
-endmenu
-
-menu "Debug Settings"
-
-config INCLUDE_DEBUG_TWEAKS
-  bool "Set Debug Tweaks for the image recipe"
-  help
-    Set Debug Tweaks for the image recipe
 
 endmenu
 
