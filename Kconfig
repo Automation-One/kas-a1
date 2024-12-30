@@ -178,6 +178,18 @@ config INCLUDE_PYTHON
   help
     Include Python in the image recipe
 
+config INCLUDE_A1_SUITE_BOOL
+  bool "Include the AutomationOne Suite"
+  depends on INCLUDE_PYTHON && INCLUDE_AUTOMATION_ONE_EXTRAS
+  default n
+  help
+    Include the AutomationOne Suite in the image recipe
+
+config INCLUDE_A1_SUITE
+  string
+  default "true" if INCLUDE_A1_SUITE_BOOL
+  default "false" if !INCLUDE_A1_SUITE_BOOL
+
 endmenu
 
 menu "Inferred and expert settings"
