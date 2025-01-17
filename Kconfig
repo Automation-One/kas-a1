@@ -139,6 +139,45 @@ config END1_DHCP
   default "true" if USE_END1_DHCP
 endmenu
 
+menu "NTP Settings"
+
+choice
+  prompt "NTP Provider"
+  default USE_SYSTEMD_TIMESYNCD
+  help
+    Select the NTP provider to use for the image recipe.
+
+config NO_NTP
+  bool "No NTP provider"
+  help
+    Don't use an NTP provider for the image recipe.
+
+config USE_SYSTEMD_TIMESYNCD
+  bool "Use systemd-timesyncd"
+  help
+    Use systemd-timesyncd as the NTP provider for the image recipe.
+
+config USE_NTPD
+  bool "Use NTPD"
+  help
+    Use NTPD as the NTP provider for the image recipe.
+
+config USE_CHRONY
+  bool "Use Chrony"
+  help
+    Use Chrony as the NTP provider for the image recipe.
+
+endchoice
+
+config NTP_PROVIDER
+  string
+  default "ntpd" if USE_NTPD
+  default "timesyncd" if USE_SYSTEMD_TIMESYNCD
+  default "chrony" if USE_CHRONY
+  default "none" if NO_NTP
+
+endmenu
+
 endmenu
 
 menu "Optional Packages and Features"
