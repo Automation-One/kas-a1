@@ -1,0 +1,6 @@
+header:
+  version: 14
+
+local_conf_header:
+  link-time-optimization: |
+    DISTRO_FEATURES:append = " lto "

@@ -52,6 +52,12 @@ config INCLUDE_SDK_YML
   bool "Populate SDK for image recipe"
   help
     Populate SDK for selected image recipe.
+
+config USE_LTO
+  bool "Enable Link Time Optimization"
+  default y
+  help
+    Enable Link Time Optimization for the image recipe.
 endmenu
 
 menu "Customization"
@@ -219,6 +225,11 @@ config KAS_INCLUDE_DEBUG_TWEAKS_YML_FILE
   string "KAS DEBUG TWEAKS file"
   depends on INCLUDE_DEBUG_TWEAKS
   default "include/common-debug-tweaks.yml"
+
+config KAS_INCLUDE_LTO_YML_FILE
+  string "KAS LTO YML file"
+  depends on USE_LTO
+  default "include/common-lto.yml"
 
 config KAS_INCLUDE_A1EXTRAS_YML_FILE
   string "KAS AutomationOne extras YML file"
