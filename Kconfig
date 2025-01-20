@@ -235,6 +235,17 @@ config INCLUDE_A1_SUITE
   default "true" if INCLUDE_A1_SUITE_BOOL
   default "false" if !INCLUDE_A1_SUITE_BOOL
 
+config INCLUDE_MBUSD_BOOL
+  bool "Include mbusd"
+  default n
+  help
+    Include mbusd in the image recipe
+
+config INCLUDE_MBUSD
+  string
+  default "true" if INCLUDE_MBUSD_BOOL
+  default "false" if !INCLUDE_MBUSD_BOOL
+
 endmenu
 
 menu "Inferred and expert settings"
