@@ -246,6 +246,20 @@ config INCLUDE_MBUSD
   default "true" if INCLUDE_MBUSD_BOOL
   default "false" if !INCLUDE_MBUSD_BOOL
 
+config INCLUDE_NODE_RED
+  bool "Include Node-RED (warning: very large)"
+  default n
+  help
+    Include Node-RED in the image recipe. Since node-red depends on the
+    node-js framework, it takes up a lot of space on the rootfs. The
+    resulting image will properly be to large to include this in the
+    nand image. This can be solved by increasing the size of the rootfs
+    partition in the image_types_a1_ubi bbclass. Keep in mind however,
+    that there is currently no automatic mechanism to increase partition
+    size during an update. This means that the user has to manually
+    increase the rootfs partition size before updating from a smaller to
+    a larger image.
+
 endmenu
 
 menu "Inferred and expert settings"
@@ -300,5 +314,10 @@ config KAS_INCLUDE_PYTHON_YML_FILE
   string "KAS Python YML file"
   depends on INCLUDE_PYTHON
   default "include/common-python.yml"
+
+config KAS_INCLUDE_NODE_RED_YML_FILE
+  string "KAS Node-RED YML file"
+  depends on INCLUDE_NODE_RED
+  default "include/common-node-red.yml"
 
 endmenu

@@ -1,0 +1,17 @@
+header:
+  version: 14
+
+local_conf_header:
+  node-red: |
+    IMAGE_INSTALL:append = " node-red "
+
+repos:
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+
+  meta-iot-cloud:
+    url: https://github.com/intel-iot-devkit/meta-iot-cloud.git
