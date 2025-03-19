@@ -11,6 +11,7 @@ repos:
       meta-oe:
       meta-filesystems:
       meta-networking:
+      meta-python:
 
   meta-a1-extras:
     url: https://github.com/Automation-One/meta-a1-extras.git
