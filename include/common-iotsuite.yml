@@ -8,4 +8,4 @@ local_conf_header:
 repos:
   meta-iotsuite:
     url: https://gitlab.com/iot-suite1/customer/automation-one/meta-iotsuite.git
-    branch: master
+    branch: main
