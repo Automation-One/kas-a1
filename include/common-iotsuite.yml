@@ -1,0 +1,11 @@
+header:
+  version: 14
+
+local_conf_header:
+  rauc: |
+    IMAGE_INSTALL:append = " awsclient remotemanager "
+
+repos:
+  meta-iotsuite:
+    url: https://gitlab.com/iot-suite1/customer/automation-one/meta-iotsuite.git
+    branch: master
