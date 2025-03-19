@@ -190,6 +190,12 @@ config INCLUDE_AUTOMATION_ONE_EXTRAS
     recipes and configurations for the AutomationOne Gateways beyond the
     standard OE layers.
 
+config INCLUDE_IOTSUITE
+  bool "Include the iotsuite layer"
+  default n
+  help
+    Include iotsuite layer.
+
 config INCLUDE_RAUC
 
   bool "Include RAUC update handler layer"
@@ -310,7 +316,12 @@ config KAS_INCLUDE_RAUC_YML_FILE
   depends on INCLUDE_RAUC
   default "include/common-rauc.yml"
 
-config KAS_INCLUDE_PYTHON_YML_FILE
+config KAS_INCLUDE_IOTSUITE_YML_FILE
+  string "KAS IoT Suite YML file"
+  depends on INCLUDE_IOTSUITE
+  default "include/common-iotsuite.yml"
+
+  config KAS_INCLUDE_PYTHON_YML_FILE
   string "KAS Python YML file"
   depends on INCLUDE_PYTHON
   default "include/common-python.yml"
