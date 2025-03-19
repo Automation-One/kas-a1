@@ -1,0 +1,1 @@
+FROM ghcr.io/siemens/kas/kas:4.7
