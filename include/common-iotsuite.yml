@@ -2,7 +2,7 @@ header:
   version: 14
 
 local_conf_header:
-  rauc: |
+  iot-suite: |
     IMAGE_INSTALL:append = " awsclient remotemanager "
 
 repos:
