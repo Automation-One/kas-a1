@@ -191,10 +191,11 @@ config INCLUDE_AUTOMATION_ONE_EXTRAS
     standard OE layers.
 
 config INCLUDE_IOTSUITE
-  bool "Include the iotsuite layer"
+  bool "Include the iotsuite layer (Access to the iotsuite is required)"
   default n
   help
-    Include iotsuite layer.
+    Include iotsuite layer. Access to the iotsuite layer is required
+    for this feature.
 
 config INCLUDE_RAUC
 
